@@ -28,11 +28,6 @@ describe('Credit Card Validator form', () => {
     page = await browser.newPage();
   });
 
-  afterAll(async () => {
-    await browser.close();
-    server.kill();
-  });
-
   test('If card number would be invalid, suitable message would be shown', async () => {
     await page.goto(baseUrl);
 
@@ -63,4 +58,10 @@ describe('Credit Card Validator form', () => {
     await message.textContent === 'Верный номер карты';
     await page.waitForSelector('.valid');
   });
+
+  afterAll(async () => {
+    await browser.close();
+    server.kill();
+  });
+  
 });
