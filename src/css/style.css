@@ -1,0 +1,77 @@
+body {
+    color: #333;
+}
+
+ul {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+
+}
+
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
+.card {
+    display: block;
+    width: 48px;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: grayscale(1);
+}
+
+.visa {
+    background-image: url(../img/visa.png);
+}
+
+.maestro {
+    background-image: url(../img/maestro.png);
+}
+
+.master {
+    background-image: url(../img/mastercard.png);
+}
+
+.discover {
+    background-image: url(../img/discover.png);
+}
+
+.jcb {
+    background-image: url(../img/jcb.png);
+}
+
+.mir {
+    background-image: url(../img/mir.png);
+}
+
+.valid {
+    filter: grayscale(0);
+}
+
+.form {
+    width: 300px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+.input {
+    width: 55%;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+.submit {
+    width: 40%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    color: white;
+    background-color: rgb(117, 158, 55);
+}

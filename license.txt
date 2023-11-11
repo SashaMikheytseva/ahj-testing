@@ -1,0 +1,19 @@
+Используемые в проекте изображения взяты с сайта https://icons8.ru/
+
+mir.png
+https://icons8.ru/icon/set/mir/color
+
+visa.png
+https://icons8.ru/icon/set/visa/color
+
+maestro.png
+https://icons8.ru/icons/set/maestro
+
+mastercard.png
+https://icons8.ru/icon/set/mastercard/color
+
+jcb.png
+https://icons8.ru/icon/set/jcb/color
+
+discover.png
+https://icons8.ru/icon/set/discover/color
