@@ -21,11 +21,16 @@ describe('Credit Card Validator form', () => {
     });
 
     browser = await puppetteer.launch({
-      // headless: false, // show gui
-      // slowMo: 250,
-      // devtools: true, // show devTools
+      headless: false, // show gui
+      slowMo: 250,
+      devtools: true, // show devTools
     });
     page = await browser.newPage();
+  });
+
+  afterAll(async () => {
+    await browser.close();
+    server.kill();
   });
 
   test('If card number would be invalid, suitable message would be shown', async () => {
@@ -57,10 +62,5 @@ describe('Credit Card Validator form', () => {
 
     await message.textContent === 'Верный номер карты';
     await page.waitForSelector('.valid');
-  });
-
-  afterAll(async () => {
-    await browser.close();
-    server.kill();
   });
 });
