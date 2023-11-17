@@ -5,12 +5,12 @@ import { fork } from 'child_process';
 jest.setTimeout(30000); // default puppeteer timeout
 
 describe('Credit Card Validator form', () => {
-  let browser = null;
-  let page = null;
-  let server = null;
+  let browser;
+  let page;
+  let server;
   const baseUrl = 'http://localhost:9000';
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     server = fork(`${__dirname}/e2e.server.js`);
     await new Promise((resolve, reject) => {
       server.on('error', reject);
@@ -27,11 +27,6 @@ describe('Credit Card Validator form', () => {
       devtools: true, // show devTools
     });
     page = await browser.newPage();
-  });
-
-  afterAll(async () => {
-    await browser.close();
-    server.kill();
   });
 
   test('If card number would be invalid, suitable message would be shown', async () => {
@@ -63,5 +58,10 @@ describe('Credit Card Validator form', () => {
 
     await message.textContent === 'Верный номер карты';
     await page.waitForSelector('.valid');
+  });
+
+  afterEach(async () => {
+    await browser.close();
+    server.kill();
   });
 });
