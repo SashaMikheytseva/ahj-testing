@@ -10,7 +10,7 @@ describe('page start', () => {
   let server = null;
   const baseUrl = 'http://localhost:9000';
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     server = fork(`${__dirname}/e2e.server.js`);
     await new Promise((resolve, reject) => {
       server.on('error', reject);
@@ -22,16 +22,16 @@ describe('page start', () => {
     });
     // открыть браузер
     browser = await puppeteer.launch({
-      // headless: false,
-      // slowMo: 150,
-      // devtools: true,
+      headless: 'new',
+      slowMo: 150,
+      devtools: true,
     });
 
     // просим браузер открыть новую страницу
     page = await browser.newPage();
   });
 
-  afterEach(async () => {
+  afterAll(async () => {
     await browser.close();
     server.kill();
   });
