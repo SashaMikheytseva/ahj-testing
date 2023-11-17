@@ -1,16 +1,15 @@
-// import puppetteer from 'puppeteer';
-import puppeteer from 'puppeteer';
+import puppetteer from 'puppeteer';
 import { fork } from 'child_process';
 
 jest.setTimeout(30000);
 
-describe('page start', () => {
-  let browser;
-  let page;
+describe('Credit Card Validator form', () => {
+  let browser = null;
+  let page = null;
   let server = null;
   const baseUrl = 'http://localhost:9000';
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     server = fork(`${__dirname}/e2e.server.js`);
     await new Promise((resolve, reject) => {
       server.on('error', reject);
@@ -20,20 +19,13 @@ describe('page start', () => {
         }
       });
     });
-    // открыть браузер
-    browser = await puppeteer.launch({
-      headless: 'new',
-      slowMo: 150,
-      devtools: true,
+
+    browser = await puppetteer.launch({
+      // headless: false, // show gui
+      // slowMo: 100,
+      // devtools: true, // show devTools
     });
-
-    // просим браузер открыть новую страницу
     page = await browser.newPage();
-  });
-
-  afterAll(async () => {
-    await browser.close();
-    server.kill();
   });
 
   test('If card number would be invalid, suitable message would be shown', async () => {
@@ -65,5 +57,10 @@ describe('page start', () => {
 
     await message.textContent === 'Верный номер карты';
     // await page.waitForSelector('.valid');
+  });
+
+  afterEach(async () => {
+    await browser.close();
+    server.kill();
   });
 });
